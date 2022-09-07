@@ -80,7 +80,7 @@ export default function HomeHero() {
           <ContentStyle>
             <m.div variants={varFade().inRight}>
               <Typography variant="h1" sx={{ color: 'common.white' }}>
-              Life is not worth living. <br />
+              Welcome to Routine Management System <br />
               </Typography>
             </m.div>
 

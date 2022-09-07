@@ -22,11 +22,7 @@ const MENU_OPTIONS = [
     linkTo: '/',
   },
   {
-    label: 'Profile',
-    linkTo: PATH_DASHBOARD.user.profile,
-  },
-  {
-    label: 'Settings',
+    label: 'Account Settings',
     linkTo: PATH_DASHBOARD.user.account,
   },
 ];

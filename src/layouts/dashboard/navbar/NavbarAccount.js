@@ -7,8 +7,6 @@ import { Box, Link, Typography } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
-// components
-import MyAvatar from '../../../components/MyAvatar';
 
 // ----------------------------------------------------------------------
 
@@ -41,8 +39,6 @@ export default function NavbarAccount({ isCollapse }) {
           }),
         }}
       >
-        <MyAvatar />
-
         <Box
           sx={{
             ml: 2,
@@ -58,9 +54,6 @@ export default function NavbarAccount({ isCollapse }) {
         >
           <Typography variant="subtitle2" noWrap>
             {user?.displayName}
-          </Typography>
-          <Typography variant="body2" noWrap sx={{ color: 'text.secondary' }}>
-            {user?.role}
           </Typography>
         </Box>
       </RootStyle>

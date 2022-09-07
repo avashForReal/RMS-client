@@ -38,7 +38,7 @@ import { UserTableToolbar, UserTableRow } from '../../sections/@dashboard/user/l
 
 // ----------------------------------------------------------------------
 
-const STATUS_OPTIONS = ['all', 'active', 'banned'];
+const STATUS_OPTIONS = ['all', 'active', 'deleted'];
 
 const ROLE_OPTIONS = [
   'all',

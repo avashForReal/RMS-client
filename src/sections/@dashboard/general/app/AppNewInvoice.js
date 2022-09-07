@@ -109,11 +109,9 @@ function AppNewInvoiceRow({ row }) {
 
   return (
     <TableRow>
-      <TableCell>{`INV-${row.id}`}</TableCell>
+      <TableCell>{`ROUTINE-${row.id}`}</TableCell>
 
-      <TableCell>{row.category}</TableCell>
-
-      <TableCell>{fCurrency(row.price)}</TableCell>
+      <TableCell>{row.faculty}</TableCell>
 
       <TableCell>
         <Label
@@ -139,11 +137,6 @@ function AppNewInvoiceRow({ row }) {
               <MenuItem onClick={handlePrint}>
                 <Iconify icon={'eva:printer-fill'} />
                 Print
-              </MenuItem>
-
-              <MenuItem onClick={handleShare}>
-                <Iconify icon={'eva:share-fill'} />
-                Share
               </MenuItem>
 
               <Divider sx={{ borderStyle: 'dashed' }} />

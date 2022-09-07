@@ -32,7 +32,9 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
+    firstName: Yup.string().required('First Name is required'),
+    lastName: Yup.string().required('Last Name is required'),
+    // name: Yup.string().required('First Name is required'),
     email: Yup.string().required('Email is required').email(),
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
@@ -40,14 +42,16 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
     company: Yup.string().required('Company is required'),
     state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
-    role: Yup.string().required('Role Number is required'),
+    userDepartment: Yup.string().required('User Department is required'),
     avatarUrl: Yup.mixed().test('required', 'Avatar is required', (value) => value !== ''),
   });
 
   const defaultValues = useMemo(
     () => ({
-      name: currentUser?.name || '',
-      email: currentUser?.email || '',
+      firstName: "test fname" || '',
+      lastName: "test lname" || '',
+      // email: currentUser?.email || '',
+      email: "test@mail" || '',
       phoneNumber: currentUser?.phoneNumber || '',
       address: currentUser?.address || '',
       country: currentUser?.country || '',
@@ -58,7 +62,7 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
       isVerified: currentUser?.isVerified || true,
       status: currentUser?.status,
       company: currentUser?.company || '',
-      role: currentUser?.role || '',
+      useDepartment: "test" || '',
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentUser]
@@ -154,7 +158,7 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
               />
             </Box>
 
-            {isEdit && (
+            {/* {isEdit && (
               <FormControlLabel
                 labelPlacement="start"
                 control={
@@ -182,9 +186,9 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
                 }
                 sx={{ mx: 0, mb: 3, width: 1, justifyContent: 'space-between' }}
               />
-            )}
+            )} */}
 
-            <RHFSwitch
+            {/* <RHFSwitch
               name="isVerified"
               labelPlacement="start"
               label={
@@ -198,7 +202,7 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
                 </>
               }
               sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
-            />
+            /> */}
           </Card>
         </Grid>
 
@@ -212,11 +216,13 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
                 gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)' },
               }}
             >
-              <RHFTextField name="name" label="Full Name" />
+              <RHFTextField name="firstName" label="First Name" />
+              <RHFTextField name="lastName" label="Last Name" />
               <RHFTextField name="email" label="Email Address" />
               <RHFTextField name="phoneNumber" label="Phone Number" />
+              <RHFTextField name="userDepartment" label="User Department" />
 
-              <RHFSelect name="country" label="Country" placeholder="Country">
+              {/* <RHFSelect name="country" label="Country" placeholder="Country">
                 <option value="" />
                 {countries.map((option) => (
                   <option key={option.code} value={option.label}>
@@ -230,7 +236,7 @@ export default function UserNewEditForm({ isEdit, currentUser }) {
               <RHFTextField name="address" label="Address" />
               <RHFTextField name="zipCode" label="Zip/Code" />
               <RHFTextField name="company" label="Company" />
-              <RHFTextField name="role" label="Role" />
+              <RHFTextField name="role" label="Role" /> */}
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>

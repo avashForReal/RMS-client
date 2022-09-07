@@ -5,7 +5,8 @@ import { Container, Grid, Stack, Button } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import useSettings from '../../hooks/useSettings';
 // _mock_
-import { _appFeatured, _appAuthors, _appInstalled, _appRelated, _appInvoices } from '../../_mock';
+// import { _appFeatured, _appAuthors, _appInstalled, _appRelated, _appInvoices } from '../../_mock';
+import { _routines } from '../../_mock';
 // components
 import Page from '../../components/Page';
 // sections
@@ -34,13 +35,14 @@ export default function GeneralApp() {
   const { themeStretch } = useSettings();
 
   return (
-    <Page title="General: App">
+    <Page title="RMS: Dashboard">
       <Container maxWidth={themeStretch ? false : 'xl'}>
-        <Grid container spacing={3}>
+        <Grid spacing={3}>
           <Grid item xs={12} md={8}>
             <AppWelcome
-              title={`Welcome back! \n ${user?.displayName}`}
-              description="If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything."
+              // title={`Welcome back! \n ${user?.displayName}`}
+              title={`Welcome back! \n Mr. Routine Generator`}
+              description="Routines are ready to roll!"
               img={
                 <SeoIllustration
                   sx={{
@@ -50,21 +52,34 @@ export default function GeneralApp() {
                   }}
                 />
               }
-              action={<Button variant="contained">Go Now</Button>}
             />
           </Grid>
 
-          <Grid item xs={12} md={4}>
-            <AppFeatured list={_appFeatured} />
+          {/* <Grid item xs={12} lg={8}> */}
+          <Grid item xs={12} lg={8}>
+            <AppNewInvoice
+              title="Generated Routines"
+              tableData={_routines}
+              tableLabels={[
+                { id: 'id', label: 'ID' },
+                { id: 'faculty', label: 'Faculty' },
+                { id: 'status', label: 'Status' },
+                { id: '' },
+              ]}
+            />
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          {/* <Grid item xs={12} md={4}>
+            <AppFeatured list={_appFeatured} />
+          </Grid> */}
+
+          {/* <Grid item xs={12} md={4}>
             <AppWidgetSummary
-              title="Total Active Users"
-              percent={2.6}
-              total={18765}
+              title="Total Active Teachers"
+              // percent={2.6}
+              total={26}
               chartColor={theme.palette.primary.main}
-              chartData={[5, 18, 12, 51, 68, 11, 39, 37, 27, 20]}
+              // chartData={[5, 18, 12, 51, 68, 11, 39, 37, 27, 20]}
             />
           </Grid>
 
@@ -86,9 +101,9 @@ export default function GeneralApp() {
               chartColor={theme.palette.chart.red[0]}
               chartData={[8, 9, 31, 8, 16, 37, 8, 33, 46, 31]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppCurrentDownload
               title="Current Download"
               chartColors={[
@@ -104,9 +119,9 @@ export default function GeneralApp() {
                 { label: 'Android', value: 78343 },
               ]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={8}>
+          {/* <Grid item xs={12} md={6} lg={8}>
             <AppAreaInstalled
               title="Area Installed"
               subheader="(+43%) than last year"
@@ -128,23 +143,9 @@ export default function GeneralApp() {
                 },
               ]}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} lg={8}>
-            <AppNewInvoice
-              title="New Invoice"
-              tableData={_appInvoices}
-              tableLabels={[
-                { id: 'id', label: 'Invoice ID' },
-                { id: 'category', label: 'Category' },
-                { id: 'price', label: 'Price' },
-                { id: 'status', label: 'Status' },
-                { id: '' },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppTopRelated title="Top Related Applications" list={_appRelated} />
           </Grid>
 
@@ -161,7 +162,7 @@ export default function GeneralApp() {
               <AppWidget title="Conversion" total={38566} icon={'eva:person-fill'} chartData={48} />
               <AppWidget title="Applications" total={55566} icon={'eva:email-fill'} color="warning" chartData={75} />
             </Stack>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Page>

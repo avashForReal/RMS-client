@@ -31,11 +31,11 @@ export const _appAuthors = [...Array(3)].map((_, index) => ({
   favourite: randomNumberRange(9999, 19999),
 }));
 
-export const _appInvoices = [...Array(5)].map((_, index) => ({
+export const _routines = [...Array(5)].map((_, index) => ({
   id: `${Date.now() + index}`,
   price: _mock.number.price(index),
-  category: randomInArray(['Android', 'Mac', 'Windows']),
-  status: randomInArray(['paid', 'out_of_date', 'in_progress']),
+  faculty: randomInArray(['IT', 'Civil', 'Software', 'Computer']),
+  status: randomInArray(['under_update', 'out_of_date', 'in_use']),
 }));
 
 export const _appFeatured = [...Array(3)].map((_, index) => ({
