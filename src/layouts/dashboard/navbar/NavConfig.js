@@ -50,6 +50,45 @@ const navConfig = [
           { title: 'edit', path: PATH_DASHBOARD.user.demoEdit },
         ],
       },
+      // department
+      {
+        title: 'department',
+        path: PATH_DASHBOARD.department.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'list', path: PATH_DASHBOARD.department.list },
+          { title: 'create', path: PATH_DASHBOARD.department.new },
+        ],
+      },
+      // subject
+      {
+        title: 'subject',
+        path: PATH_DASHBOARD.subject.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'list', path: PATH_DASHBOARD.subject.list },
+          { title: 'create', path: PATH_DASHBOARD.subject.new },
+        ],
+      },
+       // subject
+       {
+        title: 'rooms',
+        path: PATH_DASHBOARD.rooms.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'list', path: PATH_DASHBOARD.rooms.list },
+          { title: 'create', path: PATH_DASHBOARD.rooms.new },
+        ],
+      },
+      {
+        title: 'teacher',
+        path: PATH_DASHBOARD.teachers.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'list', path: PATH_DASHBOARD.teachers.list },
+          { title: 'create', path: PATH_DASHBOARD.teachers.new },
+        ],
+      },
     ],
   },
 ];

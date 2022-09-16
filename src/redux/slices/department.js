@@ -33,7 +33,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'product',
+  name: 'department',
   initialState,
   reducers: {
     // START LOADING
@@ -210,12 +210,13 @@ export const {
 
 // ----------------------------------------------------------------------
 
-export function getProducts() {
+export function getDepartments() {
   return async () => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/products');
-      dispatch(slice.actions.getProductsSuccess(response.data.products));
+      const response = await axios.get('/api/department/getAll');
+      console.log(response);
+      // dispatch(slice.actions.getProductsSuccess(response.data.products));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }

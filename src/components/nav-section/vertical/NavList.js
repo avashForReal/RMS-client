@@ -16,6 +16,7 @@ NavList.propTypes = {
 };
 
 export default function NavList({ data, depth, hasChildren, isCollapse = false }) {
+  console.log("vertical data =>",data);
   const navigate = useNavigate();
 
   const { pathname } = useLocation();

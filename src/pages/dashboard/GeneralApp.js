@@ -40,8 +40,8 @@ export default function GeneralApp() {
         <Grid spacing={3}>
           <Grid item xs={12} md={8}>
             <AppWelcome
-              // title={`Welcome back! \n ${user?.displayName}`}
-              title={`Welcome back! \n Mr. Routine Generator`}
+              title={`Welcome back! \n ${user?.fname} ${user?.lname}`}
+              // title={`Welcome back! \n Mr. Routine Generator`}
               description="Routines are ready to roll!"
               img={
                 <SeoIllustration

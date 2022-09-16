@@ -52,8 +52,6 @@ export const PATH_DASHBOARD = {
     new: path(ROOTS_DASHBOARD, '/chat/new'),
     view: (name) => path(ROOTS_DASHBOARD, `/chat/${name}`),
   },
-  calendar: path(ROOTS_DASHBOARD, '/calendar'),
-  kanban: path(ROOTS_DASHBOARD, '/kanban'),
   permissionDenied: path(ROOTS_DASHBOARD, '/permission-denied'),
   user: {
     root: path(ROOTS_DASHBOARD, '/user'),
@@ -65,33 +63,30 @@ export const PATH_DASHBOARD = {
     edit: (name) => path(ROOTS_DASHBOARD, `/user/${name}/edit`),
     demoEdit: path(ROOTS_DASHBOARD, `/user/reece-chung/edit`),
   },
-  eCommerce: {
-    root: path(ROOTS_DASHBOARD, '/e-commerce'),
-    shop: path(ROOTS_DASHBOARD, '/e-commerce/shop'),
-    list: path(ROOTS_DASHBOARD, '/e-commerce/list'),
-    checkout: path(ROOTS_DASHBOARD, '/e-commerce/checkout'),
-    new: path(ROOTS_DASHBOARD, '/e-commerce/product/new'),
-    view: (name) => path(ROOTS_DASHBOARD, `/e-commerce/product/${name}`),
-    edit: (name) => path(ROOTS_DASHBOARD, `/e-commerce/product/${name}/edit`),
-    demoEdit: path(ROOTS_DASHBOARD, '/e-commerce/product/nike-blazer-low-77-vintage/edit'),
-    demoView: path(ROOTS_DASHBOARD, '/e-commerce/product/nike-air-force-1-ndestrukt'),
+  department: {
+    root: path(ROOTS_DASHBOARD, '/department'),
+    new: path(ROOTS_DASHBOARD, '/department/new'),
+    list: path(ROOTS_DASHBOARD, '/department/list'),
+    edit: (dept) => path(ROOTS_DASHBOARD, `/department/${dept}/edit`),
   },
-  invoice: {
-    root: path(ROOTS_DASHBOARD, '/invoice'),
-    list: path(ROOTS_DASHBOARD, '/invoice/list'),
-    new: path(ROOTS_DASHBOARD, '/invoice/new'),
-    view: (id) => path(ROOTS_DASHBOARD, `/invoice/${id}`),
-    edit: (id) => path(ROOTS_DASHBOARD, `/invoice/${id}/edit`),
-    demoEdit: path(ROOTS_DASHBOARD, '/invoice/e99f09a7-dd88-49d5-b1c8-1daf80c2d7b1/edit'),
-    demoView: path(ROOTS_DASHBOARD, '/invoice/e99f09a7-dd88-49d5-b1c8-1daf80c2d7b5'),
+  subject: {
+    root: path(ROOTS_DASHBOARD, '/subject'),
+    new: path(ROOTS_DASHBOARD, '/subject/new'),
+    list: path(ROOTS_DASHBOARD, '/subject/list'),
+    edit: (sub) => path(ROOTS_DASHBOARD, `/subject/${sub}/edit`),
   },
-  blog: {
-    root: path(ROOTS_DASHBOARD, '/blog'),
-    posts: path(ROOTS_DASHBOARD, '/blog/posts'),
-    new: path(ROOTS_DASHBOARD, '/blog/new'),
-    view: (title) => path(ROOTS_DASHBOARD, `/blog/post/${title}`),
-    demoView: path(ROOTS_DASHBOARD, '/blog/post/apply-these-7-secret-techniques-to-improve-event'),
+  rooms: {
+    root: path(ROOTS_DASHBOARD, '/rooms'),
+    new: path(ROOTS_DASHBOARD, '/rooms/new'),
+    list: path(ROOTS_DASHBOARD, '/rooms/list'),
+    edit: (room) => path(ROOTS_DASHBOARD, `/rooms/${room}/edit`),
   },
+  teachers: {
+    root: path(ROOTS_DASHBOARD, '/teachers'),
+    new: path(ROOTS_DASHBOARD, '/teachers/new'),
+    list: path(ROOTS_DASHBOARD, '/teachers/list'),
+    edit: (teacher) => path(ROOTS_DASHBOARD, `/teachers/${teacher}/edit`),
+  }
 };
 
 export const PATH_DOCS = 'https://docs-minimals.vercel.app/introduction';

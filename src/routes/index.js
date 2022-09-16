@@ -63,6 +63,46 @@ export default function Router() {
             { path: 'account', element: <UserAccount /> },
           ],
         },
+        {
+          path: 'department',
+          children: [
+            { element: <Navigate to="/dashboard/department/list" replace />, index: true },
+            { path: 'list', element: <DeptList /> },
+            { path: 'new', element: <DeptCreate /> },
+            { path: ':dept/edit', element: <DeptCreate /> },
+            // { path: 'account', element: <UserAccount /> },
+          ],
+        },
+        {
+          path: 'subject',
+          children: [
+            { element: <Navigate to="/dashboard/subject/list" replace />, index: true },
+            { path: 'list', element: <SubjectList /> },
+            { path: 'new', element: <SubjectCreate /> },
+            { path: ':sub/edit', element: <SubjectCreate /> },
+            // { path: 'account', element: <UserAccount /> },
+          ],
+        },
+        {
+          path: 'rooms',
+          children: [
+            { element: <Navigate to="/dashboard/rooms/list" replace />, index: true },
+            { path: 'list', element: <RoomList /> },
+            { path: 'new', element: <RoomCreate /> },
+            { path: ':room/edit', element: <RoomCreate /> },
+            // { path: 'account', element: <UserAccount /> },
+          ],
+        },
+        {
+          path: 'teachers',
+          children: [
+            { element: <Navigate to="/dashboard/teachers/list" replace />, index: true },
+            { path: 'list', element: <TeachersList /> },
+            { path: 'new', element: <TeachersCreate /> },
+            { path: ':teacher/edit', element: <TeachersCreate /> },
+            // { path: 'account', element: <UserAccount /> },
+          ],
+        },
       ],
     },
 
@@ -96,6 +136,23 @@ const GeneralApp = Loadable(lazy(() => import('../pages/dashboard/GeneralApp')))
 const UserList = Loadable(lazy(() => import('../pages/dashboard/UserList')));
 const UserAccount = Loadable(lazy(() => import('../pages/dashboard/UserAccount')));
 const UserCreate = Loadable(lazy(() => import('../pages/dashboard/UserCreate')));
+
+// department
+const DeptCreate = Loadable(lazy(() => import('../pages/dashboard/DeptCreate')));
+const DeptList = Loadable(lazy(() => import('../pages/dashboard/DeptList')));
+
+// subject
+const SubjectCreate = Loadable(lazy(() => import('../pages/dashboard/SubjectCreate')));
+const SubjectList = Loadable(lazy(() => import('../pages/dashboard/SubjectList')));
+
+// subject
+const RoomCreate = Loadable(lazy(() => import('../pages/dashboard/RoomCreate')));
+const RoomList = Loadable(lazy(() => import('../pages/dashboard/RoomList')));
+
+
+// teachers
+const TeachersCreate = Loadable(lazy(() => import('../pages/dashboard/TeachersCreate')));
+const TeachersList = Loadable(lazy(() => import('../pages/dashboard/TeachersList')));
 
 // MAIN
 const HomePage = Loadable(lazy(() => import('../pages/Home')));

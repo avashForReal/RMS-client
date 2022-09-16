@@ -17,6 +17,7 @@ NavList.propTypes = {
 };
 
 export default function NavList({ data, depth, hasChildren }) {
+  console.log("navlist data =>",data);
   const menuRef = useRef(null);
 
   const navigate = useNavigate();

@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 // import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // slices
-import calendarReducer from './slices/calendar';
-
+// import calendarReducer from './slices/calendar';
+import departmentReducer from './slices/department';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
@@ -21,7 +21,8 @@ const rootPersistConfig = {
 // };
 
 const rootReducer = combineReducers({
-  calendar: calendarReducer,
+  // calendar: calendarReducer,
+  department: departmentReducer,
 });
 
 export { rootPersistConfig, rootReducer };

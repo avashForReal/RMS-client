@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import jwtDecode from 'jwt-decode';
 import { createContext, useEffect, useReducer } from 'react';
 // utils
 import axios from '../utils/axios';
@@ -62,10 +63,13 @@ function AuthProvider({ children }) {
         const accessToken = localStorage.getItem('accessToken');
 
         if (accessToken && isValidToken(accessToken)) {
+          console.log('access token is valid =>', accessToken);
           setSession(accessToken);
 
-          const response = await axios.get('/api/account/my-account');
-          const { user } = response.data;
+          // const response = await axios.get('/api/account/my-account');
+          // const { user } = response.data;
+          const user = jwtDecode(accessToken);
+          console.log(user);
 
           dispatch({
             type: 'INITIALIZE',
@@ -99,7 +103,7 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/account/login', {
+    const response = await axios.post('/api/user/login', {
       email,
       password,
     });
