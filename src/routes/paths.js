@@ -86,6 +86,12 @@ export const PATH_DASHBOARD = {
     new: path(ROOTS_DASHBOARD, '/teachers/new'),
     list: path(ROOTS_DASHBOARD, '/teachers/list'),
     edit: (teacher) => path(ROOTS_DASHBOARD, `/teachers/${teacher}/edit`),
+  },
+  semester: {
+    root: path(ROOTS_DASHBOARD, '/semester'),
+    new: path(ROOTS_DASHBOARD, '/semester/new'),
+    list: path(ROOTS_DASHBOARD, '/semester/list'),
+    edit: (sem) => path(ROOTS_DASHBOARD, `/semester/${sem}/edit`),
   }
 };
 

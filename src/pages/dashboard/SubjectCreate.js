@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import { subjectService } from '../../_services';
 import { showSuccessMessage, showErrorMessage } from '../../_helpers/messages'
+import { ifError } from 'assert';
 
 
 export default function SubjectCreate() {
@@ -19,7 +20,10 @@ export default function SubjectCreate() {
   // form validation rules
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Subject name is required'),
-    credit_hour: Yup.number().required('Credit hour must be number')
+    creditHour: Yup.number().required('Credit hour must be number'),
+    lecture: Yup.number().required('Lecture must be number'),
+    practical: Yup.number().required('Practical must be number'),
+    alias: Yup.number().required('Alias must be number'),
   });
 
   // functions to build form returned by useForm() hook
@@ -45,7 +49,8 @@ export default function SubjectCreate() {
         reset()
         showSuccessMessage("Subject added successfully");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         showErrorMessage("something went wrong. try again")
       });
   }
@@ -69,7 +74,7 @@ export default function SubjectCreate() {
       // get user and set form fields
       subjectService.getById(id).then((dept) => {
         // console.log(dept)
-        const fields = ['name','credit_hour'];
+        const fields = ['name','creditHour', 'lecture','practical','alias'];
         fields.forEach((field) => setValue(field, dept[field]));
       });
     }
@@ -94,13 +99,46 @@ export default function SubjectCreate() {
           <div className="form-group col-7">
             <label>Credit Hour</label>
             <input
-              name="credit_hour"
+              name="creditHour"
               type="number"
-              {...register('credit_hour')}
+              {...register('creditHour')}
               // className={`form-control`}
-              className={`form-control ${errors.credit_hour ? 'is-invalid' : ''}`}
+              className={`form-control ${errors.creditHour ? 'is-invalid' : ''}`}
             />
-            <div className="invalid-feedback">{errors?.credit_hour?.message}</div>
+            <div className="invalid-feedback">{errors?.creditHour?.message}</div>
+          </div>
+          <div className="form-group col-7">
+            <label>Lecture</label>
+            <input
+              name="lecture"
+              type="number"
+              {...register('lecture')}
+              // className={`form-control`}
+              className={`form-control ${errors.lecture ? 'is-invalid' : ''}`}
+            />
+            <div className="invalid-feedback">{errors?.lecture?.message}</div>
+          </div>
+          <div className="form-group col-7">
+            <label>Practical</label>
+            <input
+              name="practical"
+              type="number"
+              {...register('practical')}
+              // className={`form-control`}
+              className={`form-control ${errors.practical ? 'is-invalid' : ''}`}
+            />
+            <div className="invalid-feedback">{errors?.practical?.message}</div>
+          </div>
+          <div className="form-group col-7">
+            <label>Alias</label>
+            <input
+              name="alias"
+              type="number"
+              {...register('alias')}
+              // className={`form-control`}
+              className={`form-control ${errors.alias ? 'is-invalid' : ''}`}
+            />
+            <div className="invalid-feedback">{errors?.alias?.message}</div>
           </div>
         </div>
         <div className="form-group">

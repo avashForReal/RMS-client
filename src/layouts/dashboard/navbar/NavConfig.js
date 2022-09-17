@@ -89,6 +89,15 @@ const navConfig = [
           { title: 'create', path: PATH_DASHBOARD.teachers.new },
         ],
       },
+      {
+        title: 'semester',
+        path: PATH_DASHBOARD.semester.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'list', path: PATH_DASHBOARD.semester.list },
+          { title: 'create', path: PATH_DASHBOARD.semester.new },
+        ],
+      },
     ],
   },
 ];

@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { subjectService } from '../../_services';
+import { semesterService } from '../../_services';
 
-export default function SubjectList() {
+export default function SemesterList() {
   // const { path } = match;
-  const path = '/dashboard/subject';
-  const [subject, setSubject] = useState(null);
+  const path = '/dashboard/semester';
+  const [semester, setSemester] = useState(null);
 
   useEffect(() => {
-    subjectService.getAll().then((x) => {
-      setSubject(x);
+    semesterService.getAll().then((x) => {
+      setSemester(x);
     });
   }, []);
 
-  function deleteDepartment(id) {
-    setSubject(
-      subject.map((x) => {
+  function deleteSemester(id) {
+    setSemester(
+      semester.map((x) => {
         if (x._id === id) {
           x.isDeleting = true;
         }
         return x;
       })
     );
-    subjectService.delete(id).then((res) => {
-      setSubject((subject) => subject.filter(x => {
+    semesterService.delete(id).then((res) => {
+      // console.log("delete res", res);
+      setSemester((semester) => semester.filter(x => {
         return x._id !== id
       }))
     });
@@ -32,41 +33,35 @@ export default function SubjectList() {
 
   return (
     <div>
-      <h1>subjects</h1>
+      <h1>semester</h1>
       <Link to={`${path}/new`} className="btn btn-sm btn-success mb-2">
-        Add subject
+        Add Semester
       </Link>
       <div>
         <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ width: '30%' }}>Name</th>
-              <th style={{ width: '10%' }}>Credit Hour</th>
-              <th style={{ width: '20%' }}>Lecture</th>
-              <th style={{ width: '10%' }}>Practical</th>
-              <th style={{ width: '10%' }}>Alias</th>
-              <th style={{ width: '20%' }}></th>
+              <th style={{ width: '30%' }}>Semester</th>
+              <th style={{ width: '30%' }}>Subjects</th>
+              <th style={{ width: '10%' }}></th>
             </tr>
           </thead>
           <tbody>
-            {subject &&
-              subject.map((sub) => (
-                <tr key={sub._id}>
-                  <td>{sub.name}</td>
-                  <td>{sub.creditHour}</td>
-                  <td>{sub.lecture}</td>
-                  <td>{sub.practical}</td>
-                  <td>{sub.alias}</td>
+            {semester &&
+              semester.map((sem) => (
+                <tr key={sem._id}>
+                  <td>{sem.semester}</td>
+                  <td>{sem.subjects.map((sub,i) => <span key={i} >{sub.name}</span>)}</td>
                   <td style={{ whiteSpace: 'nowrap' }}>
-                    <Link to={`${path}/${sub._id}/edit`} className="btn btn-sm btn-primary mr-1">
+                    <Link to={`${path}/${sem._id}/edit`} className="btn btn-sm btn-primary mr-1">
                       Edit
                     </Link>
                     <button
-                      onClick={() => deleteDepartment(sub._id)}
+                      onClick={() => deleteSemester(sem._id)}
                       className="btn btn-sm btn-danger btn-delete-user"
-                      disabled={sub.isDeleting}
+                      disabled={sem.isDeleting}
                     >
-                      {sub.isDeleting ? (
+                      {sem.isDeleting ? (
                         <span className="spinner-border spinner-border-sm"></span>
                       ) : (
                         <span>Delete</span>
@@ -75,17 +70,17 @@ export default function SubjectList() {
                   </td>
                 </tr>
               ))}
-            {!subject && (
+            {!semester && (
               <tr>
                 <td colSpan="4" className="text-center">
                   <div className="spinner-border spinner-border-lg align-center"></div>
                 </td>
               </tr>
             )}
-            {subject && !subject.length && (
+            {semester && !semester.length && (
               <tr>
                 <td colSpan="4" className="text-center">
-                  <div className="p-2">No subject To Display</div>
+                  <div className="p-2">No semester To Display</div>
                 </td>
               </tr>
             )}

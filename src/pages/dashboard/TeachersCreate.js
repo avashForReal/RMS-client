@@ -21,8 +21,9 @@ export default function TeachersCreate() {
     name: Yup.string().required('Teacher name is required'),
     workload: Yup.number().required('Teacher workload must be number'),
     type: Yup.string().required('Teacher type is required'),
-    start: Yup.string().required('Start period is required'),
-    end: Yup.string().required('End period is required'),
+    startTime: Yup.string('Must be string'),
+    endTime: Yup.string('Must be string'),
+    initial: Yup.string().required('End period is required'),
   });
 
   // functions to build form returned by useForm() hook
@@ -48,7 +49,8 @@ export default function TeachersCreate() {
         reset()
         showSuccessMessage("Subject added successfully");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         showErrorMessage("something went wrong. try again")
       });
   }
@@ -72,7 +74,7 @@ export default function TeachersCreate() {
       // get user and set form fields
       teachersService.getById(id).then((dept) => {
         // console.log(dept)
-        const fields = ['name','workload', 'type', 'start', 'end'];
+        const fields = ['name','workload', 'type', 'startTime', 'end'];
         fields.forEach((field) => setValue(field, dept[field]));
       });
     }
@@ -117,26 +119,37 @@ export default function TeachersCreate() {
             <div className="invalid-feedback">{errors?.workload?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>Start</label>
+            <label>startTime</label>
             <input
-              name="start"
+              name="startTime"
               type="text"
-              {...register('start')}
+              {...register('startTime')}
               // className={`form-control`}
-              className={`form-control ${errors.start ? 'is-invalid' : ''}`}
+              className={`form-control ${errors.startTime ? 'is-invalid' : ''}`}
             />
-            <div className="invalid-feedback">{errors?.start?.message}</div>
+            <div className="invalid-feedback">{errors?.startTime?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>End</label>
+            <label>endTime</label>
             <input
-              name="end"
+              name="endTime"
               type="text"
-              {...register('end')}
+              {...register('endTime')}
               // className={`form-control`}
-              className={`form-control ${errors.end ? 'is-invalid' : ''}`}
+              className={`form-control ${errors.endTime ? 'is-invalid' : ''}`}
             />
-            <div className="invalid-feedback">{errors?.end?.message}</div>
+            <div className="invalid-feedback">{errors?.endTime?.message}</div>
+          </div>
+          <div className="form-group col-7">
+            <label>Initial</label>
+            <input
+              name="initial"
+              type="text"
+              {...register('initial')}
+              // className={`form-control`}
+              className={`form-control ${errors.initial ? 'is-invalid' : ''}`}
+            />
+            <div className="invalid-feedback">{errors?.initial?.message}</div>
           </div>
         </div>
         <div className="form-group">

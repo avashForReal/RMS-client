@@ -103,6 +103,16 @@ export default function Router() {
             // { path: 'account', element: <UserAccount /> },
           ],
         },
+        {
+          path: 'semester',
+          children: [
+            { element: <Navigate to="/dashboard/semester/list" replace />, index: true },
+            { path: 'list', element: <SemesterList /> },
+            { path: 'new', element: <SemesterCreate /> },
+            { path: ':sem/edit', element: <SemesterCreate /> },
+            // { path: 'account', element: <UserAccount /> },
+          ],
+        },
       ],
     },
 
@@ -149,10 +159,13 @@ const SubjectList = Loadable(lazy(() => import('../pages/dashboard/SubjectList')
 const RoomCreate = Loadable(lazy(() => import('../pages/dashboard/RoomCreate')));
 const RoomList = Loadable(lazy(() => import('../pages/dashboard/RoomList')));
 
-
 // teachers
 const TeachersCreate = Loadable(lazy(() => import('../pages/dashboard/TeachersCreate')));
 const TeachersList = Loadable(lazy(() => import('../pages/dashboard/TeachersList')));
+
+// teachers
+const SemesterCreate = Loadable(lazy(() => import('../pages/dashboard/SemesterCreate')));
+const SemesterList = Loadable(lazy(() => import('../pages/dashboard/SemesterList')));
 
 // MAIN
 const HomePage = Loadable(lazy(() => import('../pages/Home')));

@@ -42,9 +42,10 @@ export default function DeptList() {
             <tr>
               <th style={{ width: '20%' }}>Name</th>
               <th style={{ width: '10%' }}>Workload</th>
-              <th style={{ width: '20%' }}>Type</th>
-              <th style={{ width: '20%' }}>Start</th>
-              <th style={{ width: '20%' }}>End</th>
+              <th style={{ width: '10%' }}>Type</th>
+              <th style={{ width: '20%' }}>Start Time</th>
+              <th style={{ width: '20%' }}>End Time</th>
+              <th style={{ width: '20%' }}>Initial</th>
               <th style={{ width: '10%' }}></th>
             </tr>
           </thead>
@@ -55,8 +56,9 @@ export default function DeptList() {
                   <td>{teacher.name}</td>
                   <td>{teacher.workload}</td>
                   <td>{teacher.type}</td>
-                  <td>{teacher.start}</td>
-                  <td>{teacher.end}</td>
+                  <td>{teacher.startTime}</td>
+                  <td>{teacher.endTime}</td>
+                  <td>{teacher.initial}</td>
                   <td style={{ whiteSpace: 'nowrap' }}>
                     <Link to={`${path}/${teacher._id}/edit`} className="btn btn-sm btn-primary mr-1">
                       Edit
