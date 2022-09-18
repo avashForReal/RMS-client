@@ -10,6 +10,7 @@ export default function SemesterList() {
 
   useEffect(() => {
     semesterService.getAll().then((x) => {
+      console.log("sem >",x)
       setSemester(x);
     });
   }, []);
@@ -32,7 +33,7 @@ export default function SemesterList() {
 
   return (
     <div>
-      <h1>semester</h1>
+      <h1>Semester</h1>
       <Link to={`${path}/new`} className="btn btn-sm btn-success mb-2">
         Add Semester
       </Link>

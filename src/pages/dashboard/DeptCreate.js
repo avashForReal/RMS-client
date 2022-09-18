@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import Multiselect from 'multiselect-react-dropdown';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { departmentService } from '../../_services';
-import { showSuccessMessage, showErrorMessage } from '../../_helpers/messages'
-
+import { departmentService, semesterService } from '../../_services';
+import { showSuccessMessage, showErrorMessage } from '../../_helpers/messages';
 
 export default function DeptCreate() {
   const { pathname } = useLocation();
   const isAddMode = !pathname.includes('edit');
   const params = useParams();
   const id = params.dept;
-  // const { id } = match.params;
-  // const isAddMode = !id;
+
+  // multiselect stuff
+  const semref = useRef();
+  const [semester, setSemester] = useState([]);
+  const [selectedsemester, setSelectedSemester] = useState([]);
+  const [semerror, setSemError] = useState(false);
 
   // form validation rules
   const validationSchema = Yup.object().shape({
@@ -33,43 +37,78 @@ export default function DeptCreate() {
     resolver: yupResolver(validationSchema),
   });
 
+  const onSelectSemester = (list, item) => {
+    // console.log(item)
+    setSelectedSemester([...selectedsemester, item]);
+  };
+
+  const onRemoveSemester = (list, item) => {
+    const newSelected = selectedsemester.filter((el) => el._id !== item._id);
+    setSelectedSemester([...newSelected]);
+  };
+
   function onSubmit(data) {
-    return isAddMode ? createDepartment(data) : updateUser(id, data);
+    return isAddMode ? createDepartment(data) : updateDepartment(id, data);
   }
 
   function createDepartment(data) {
+    if (selectedsemester.length === 0) {
+      setSemError(true);
+      return;
+    }
+    setSemError(false);
+    let ids = selectedsemester.map((el) => el._id);
+    const newData = {
+      ...data,
+      semesters: ids,
+    };
+
     return departmentService
-      .create(data)
+      .create(newData)
       .then(() => {
-        reset()
-        showSuccessMessage("Department added successfully");
+        reset();
+        semref.current.resetSelectedValues();
+        showSuccessMessage('Department added successfully');
       })
-      .catch(() => {
-        showErrorMessage("something went wrong. try again")
+      .catch((err) => {
+        showErrorMessage(err || 'something went wrong. try again');
       });
   }
 
-  function updateUser(id, data) {
-    console.log(id,data)
+  function updateDepartment(id, data) {
+    if (selectedsemester.length === 0) {
+      setSemError(true);
+      return;
+    }
+    setSemError(false);
+    let ids = selectedsemester.map((el) => el._id);
+    const newData = {
+      ...data,
+      semesters: ids,
+    };
     return departmentService
-      .update(id, data)
+      .update(id, newData)
       .then(() => {
-        reset()
-        showSuccessMessage("Department updated successfully");
+        reset();
+        semref.current.resetSelectedValues();
+        showSuccessMessage('Department updated successfully');
         // alertService.success('User updated', { keepAfterRouteChange: true });
       })
-      .catch(() => {
-        showErrorMessage("something went wrong. try again")
+      .catch((err) => {
+        showErrorMessage(err || 'something went wrong. try again');
       });
   }
 
   useEffect(() => {
+    semesterService.getAll().then((x) => {
+      setSemester(x);
+    });
+
     if (!isAddMode) {
       // get user and set form fields
       departmentService.getById(id).then((dept) => {
-        // console.log(dept)
-        const fields = ['name'];
-        fields.forEach((field) => setValue(field, dept[field]));
+        setValue('name', dept.name);
+        setSelectedSemester(dept.semesters);
       });
     }
   }, []);
@@ -91,6 +130,30 @@ export default function DeptCreate() {
             <div className="invalid-feedback">{errors?.name?.message}</div>
           </div>
         </div>
+
+        <div className="form-row">
+          <div className="form-group col-7">
+            <label>Semesters</label>
+            <div>
+              <Multiselect
+                options={semester}
+                onSelect={onSelectSemester}
+                onRemove={onRemoveSemester}
+                displayValue="semester"
+                selectedValues={selectedsemester}
+                ref={semref}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="form-row">
+          {semerror && (
+            <div style={{ color: 'red' }} className="">
+              Semester cannot be empty
+            </div>
+          )}
+        </div>
+
         <div className="form-group">
           <button type="submit" disabled={formState.isSubmitting} className="btn btn-primary">
             {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}

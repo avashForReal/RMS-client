@@ -42,7 +42,8 @@ export default function DeptList() {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ width: '30%' }}>Name</th>
+              <th style={{ width: '20%' }}>Name</th>
+              <th style={{ width: '20%' }}>Semesters</th>
               <th style={{ width: '10%' }}></th>
             </tr>
           </thead>
@@ -51,6 +52,7 @@ export default function DeptList() {
               department.map((dept) => (
                 <tr key={dept._id}>
                   <td>{dept.name}</td>
+                  <td>{dept.semesters.map((sem,i) => <span key={i} >{sem.semester}</span>)}</td>
                   <td style={{ whiteSpace: 'nowrap' }}>
                     <Link to={`${path}/${dept._id}/edit`} className="btn btn-sm btn-primary mr-1">
                       Edit

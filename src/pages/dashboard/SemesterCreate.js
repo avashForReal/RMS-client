@@ -11,13 +11,15 @@ import { showSuccessMessage, showErrorMessage } from '../../_helpers/messages';
 export default function SemesterCreate() {
   const { pathname } = useLocation();
   const isAddMode = !pathname.includes('edit');
-  const [subject, setSubject] = useState([]);
-  const multiref = useRef();
-  const [selectedsubject, setSelectedSubject] = useState([]);
-  const [suberror, setSubError] = useState(false);
   const params = useParams();
   const id = params.sem;
  
+
+  const multiref = useRef();
+  const [subject, setSubject] = useState([]);
+  const [selectedsubject, setSelectedSubject] = useState([]);
+  const [suberror, setSubError] = useState(false);
+
 
   // form validation rules
   const validationSchema = Yup.object().shape({
