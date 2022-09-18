@@ -24,7 +24,6 @@ export default function DeptList() {
       })
     );
     departmentService.delete(id).then((res) => {
-      // console.log("delete res", res);
       setDepartment((department) => department.filter(x => {
         return x._id !== id
       }))

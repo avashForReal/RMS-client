@@ -24,7 +24,6 @@ export default function SemesterList() {
       })
     );
     semesterService.delete(id).then((res) => {
-      // console.log("delete res", res);
       setSemester((semester) => semester.filter(x => {
         return x._id !== id
       }))

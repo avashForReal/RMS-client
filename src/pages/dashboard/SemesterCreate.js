@@ -14,12 +14,10 @@ export default function SemesterCreate() {
   const [subject, setSubject] = useState([]);
   const multiref = useRef();
   const [selectedsubject, setSelectedSubject] = useState([]);
-  const [presubject, setPreSubject] = useState([]);
   const [suberror, setSubError] = useState(false);
   const params = useParams();
   const id = params.sem;
-  // const { id } = match.params;
-  // const isAddMode = !id;
+ 
 
   // form validation rules
   const validationSchema = Yup.object().shape({
@@ -40,11 +38,12 @@ export default function SemesterCreate() {
   });
 
   const onSelectSubject = (list, item) => {
-    setSelectedSubject([...selectedsubject, item._id]);
+    // console.log(item)
+    setSelectedSubject([...selectedsubject, item]);
   };
 
   const onRemoveSubject = (list, item) => {
-    const newSelected = selectedsubject.filter((el) => el !== item._id);
+    const newSelected = selectedsubject.filter((el) => el._id !== item._id);
     setSelectedSubject([...newSelected]);
   };
 
@@ -58,9 +57,10 @@ export default function SemesterCreate() {
       return;
     }
     setSubError(false);
+    let ids = selectedsubject.map(el => el._id);
     const newData = {
       ...data,
-      subjects: selectedsubject,
+      subjects: ids,
     };
     return semesterService
       .create(newData)
@@ -75,14 +75,25 @@ export default function SemesterCreate() {
   }
 
   function updateSemester(id, data) {
+    if (selectedsubject.length === 0) {
+      setSubError(true);
+      return;
+    }
+    setSubError(false);
+    let ids = selectedsubject.map(el => el._id);
+    const newData = {
+      ...data,
+      subjects: ids,
+    };
     return semesterService
-      .update(id, data)
+      .update(id, newData)
       .then(() => {
         reset();
+        multiref.current.resetSelectedValues();
         showSuccessMessage('Semester updated successfully');
       })
-      .catch(() => {
-        showErrorMessage('something went wrong. try again');
+      .catch((err) => {
+        showErrorMessage(err || 'something went wrong. try again');
       });
   }
 
@@ -94,10 +105,7 @@ export default function SemesterCreate() {
       // get user and set form fields
       semesterService.getById(id).then((sem) => {
         setValue('semester', sem.semester);
-        setPreSubject(sem.subjects);
-        // sem.subjects.map(el => {
-        //   setSelectedSubject([...selectedsubject,el._id])
-        // })
+        setSelectedSubject(sem.subjects);
       });
     }
   }, []);
@@ -130,7 +138,7 @@ export default function SemesterCreate() {
                 onSelect={onSelectSubject}
                 onRemove={onRemoveSubject}
                 displayValue="name"
-                selectedValues={presubject}
+                selectedValues={selectedsubject}
                 ref={multiref}
               />
             </div>
