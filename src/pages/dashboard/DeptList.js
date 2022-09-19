@@ -10,8 +10,10 @@ export default function DeptList() {
 
   useEffect(() => {
     departmentService.getAll().then((x) => {
+      console.log('after set dept', x);
       setDepartment(x);
     });
+
   }, []);
 
   function deleteDepartment(id) {
@@ -28,7 +30,6 @@ export default function DeptList() {
         return x._id !== id
       }))
       // setDepartment((department) => department.filter((x) => x._id !== id));
-      // console.log('after set dept', department);
     });
   }
 
@@ -44,6 +45,7 @@ export default function DeptList() {
             <tr>
               <th style={{ width: '20%' }}>Name</th>
               <th style={{ width: '20%' }}>Semesters</th>
+              {/* <th style={{ width: '20%' }}>Semesters</th> */}
               <th style={{ width: '10%' }}></th>
             </tr>
           </thead>
