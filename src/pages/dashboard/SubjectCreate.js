@@ -19,11 +19,11 @@ export default function SubjectCreate() {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Subject name is required'),
-    creditHour: Yup.number().required('Credit hour must be number'),
-    lecture: Yup.number().required('Lecture must be number'),
-    practical: Yup.number().required('Practical must be number'),
-    alias: Yup.number().required('Alias must be number'),
+    name: Yup.string('Subject name must be a string').required('Subject name is required'),
+    creditHour: Yup.number().typeError('Credit hour must be a number').required('Credit hour is required'),
+    lecture: Yup.number().typeError('Number of lecture must be number').required('Number of lecture is required'),
+    practical: Yup.number().typeError('Number of practicals must be number').required('Number of practicals are required'),
+    alias: Yup.string('Subject alias must be a string').required('Subject alias is required'),
   });
 
   // functions to build form returned by useForm() hook
@@ -86,7 +86,7 @@ export default function SubjectCreate() {
         <h1>{isAddMode ? 'Add Subject' : 'Edit Subject'}</h1>
         <div className="form-row">
           <div className="form-group col-7">
-            <label>Subject</label>
+            <label>Subject Name</label>
             <input
               name="name"
               type="text"
@@ -97,7 +97,7 @@ export default function SubjectCreate() {
             <div className="invalid-feedback">{errors?.name?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>Credit Hour</label>
+            <label>Credit Hours</label>
             <input
               name="creditHour"
               type="number"
@@ -108,7 +108,7 @@ export default function SubjectCreate() {
             <div className="invalid-feedback">{errors?.creditHour?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>Lecture</label>
+            <label>Number of Lectures</label>
             <input
               name="lecture"
               type="number"
@@ -119,7 +119,7 @@ export default function SubjectCreate() {
             <div className="invalid-feedback">{errors?.lecture?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>Practical</label>
+            <label>Number of Practicals</label>
             <input
               name="practical"
               type="number"
@@ -130,10 +130,10 @@ export default function SubjectCreate() {
             <div className="invalid-feedback">{errors?.practical?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>Alias</label>
+            <label>Subject Alias</label>
             <input
               name="alias"
-              type="number"
+              type="text"
               {...register('alias')}
               // className={`form-control`}
               className={`form-control ${errors.alias ? 'is-invalid' : ''}`}

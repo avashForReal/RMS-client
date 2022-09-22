@@ -22,6 +22,11 @@ const ICONS = {
   analytics: getIcon('ic_analytics'),
   dashboard: getIcon('ic_dashboard'),
   menuItem: getIcon('ic_menu_item'),
+  teacher: getIcon('teacher'),
+  subjects: getIcon('subjects'),
+  semester: getIcon('semester'),
+  rooms: getIcon('rooms'),
+  dept: getIcon('dept')
 };
 
 const navConfig = [
@@ -54,7 +59,7 @@ const navConfig = [
       {
         title: 'department',
         path: PATH_DASHBOARD.department.root,
-        icon: ICONS.user,
+        icon: ICONS.dept,
         children: [
           { title: 'list', path: PATH_DASHBOARD.department.list },
           { title: 'create', path: PATH_DASHBOARD.department.new },
@@ -64,17 +69,17 @@ const navConfig = [
       {
         title: 'subject',
         path: PATH_DASHBOARD.subject.root,
-        icon: ICONS.user,
+        icon: ICONS.subjects,
         children: [
           { title: 'list', path: PATH_DASHBOARD.subject.list },
           { title: 'create', path: PATH_DASHBOARD.subject.new },
         ],
       },
-       // subject
+       // rooms
        {
         title: 'rooms',
         path: PATH_DASHBOARD.rooms.root,
-        icon: ICONS.user,
+        icon: ICONS.rooms,
         children: [
           { title: 'list', path: PATH_DASHBOARD.rooms.list },
           { title: 'create', path: PATH_DASHBOARD.rooms.new },
@@ -83,7 +88,7 @@ const navConfig = [
       {
         title: 'teacher',
         path: PATH_DASHBOARD.teachers.root,
-        icon: ICONS.user,
+        icon: ICONS.teacher,
         children: [
           { title: 'list', path: PATH_DASHBOARD.teachers.list },
           { title: 'create', path: PATH_DASHBOARD.teachers.new },
@@ -92,7 +97,7 @@ const navConfig = [
       {
         title: 'semester',
         path: PATH_DASHBOARD.semester.root,
-        icon: ICONS.user,
+        icon: ICONS.semester,
         children: [
           { title: 'list', path: PATH_DASHBOARD.semester.list },
           { title: 'create', path: PATH_DASHBOARD.semester.new },

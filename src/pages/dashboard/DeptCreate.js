@@ -146,7 +146,6 @@ export default function DeptCreate() {
 
   return (
     <>
-      <div>{JSON.stringify(subs)}</div>
       <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
         <h1>{isAddMode ? 'Add Department' : 'Edit Department'}</h1>
         <div className="form-row">
@@ -194,7 +193,7 @@ export default function DeptCreate() {
               return (
                 <>
                   <div className="mt-2" key={i}>
-                    <span>{sub.name}</span>
+                    <span style={{fontWeight: "bold"}}>{sub.name}</span>
                     <input
                       type="text"
                       {...register(`subjects.${i}.subject`)}
@@ -207,9 +206,9 @@ export default function DeptCreate() {
                       // className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                     />
 
-                    <span>Teacher:</span>
+                    <span style={{marginLeft: "60px"}}>Teacher:</span>
 
-                    <select {...register(`subjects.${i}.teacher`)} className="form-select form-select-sm">
+                    <select style={{width: "200px",marginLeft:"10px"}} {...register(`subjects.${i}.teacher`)} className="form-select form-select-sm">
                       {teachers.map((t, index) => {
                         return (
                           <>

@@ -49,8 +49,8 @@ export default function RoomList() {
             {rooms &&
               rooms.map((room) => (
                 <tr key={room._id}>
-                  <td>{room.room_number}</td>
-                  <td>{room.available? 'available':'not available'}</td>
+                  <td>{room.roomNumber}</td>
+                  {room.available? <td style={{color: "#76BA1B"}}>available</td>:<td style={{color: "red"}}>not available</td>}
                   <td style={{ whiteSpace: 'nowrap' }}>
                     <Link to={`${path}/${room._id}/edit`} className="btn btn-sm btn-primary mr-1">
                       Edit

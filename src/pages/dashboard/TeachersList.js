@@ -32,7 +32,7 @@ export default function DeptList() {
 
   return (
     <div>
-      <h1>teachers</h1>
+      <h1>Teachers</h1>
       <Link to={`${path}/new`} className="btn btn-sm btn-success mb-2">
         Add teacher
       </Link>
@@ -42,7 +42,7 @@ export default function DeptList() {
             <tr>
               <th style={{ width: '20%' }}>Name</th>
               <th style={{ width: '10%' }}>Workload</th>
-              <th style={{ width: '10%' }}>Type</th>
+              {/* <th style={{ width: '10%' }}>Type</th> */}
               <th style={{ width: '20%' }}>Start Time</th>
               <th style={{ width: '20%' }}>End Time</th>
               <th style={{ width: '20%' }}>Initial</th>
@@ -55,7 +55,7 @@ export default function DeptList() {
                 <tr key={teacher._id}>
                   <td>{teacher.name}</td>
                   <td>{teacher.workload}</td>
-                  <td>{teacher.type}</td>
+                  {/* <td>{teacher.type}</td> */}
                   <td>{teacher.startTime}</td>
                   <td>{teacher.endTime}</td>
                   <td>{teacher.initial}</td>

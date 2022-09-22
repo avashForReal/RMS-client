@@ -32,7 +32,7 @@ export default function SubjectList() {
 
   return (
     <div>
-      <h1>subjects</h1>
+      <h1>Subjects</h1>
       <Link to={`${path}/new`} className="btn btn-sm btn-success mb-2">
         Add subject
       </Link>
@@ -40,11 +40,11 @@ export default function SubjectList() {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ width: '30%' }}>Name</th>
+              <th style={{ width: '20%' }}>Name</th>
               <th style={{ width: '10%' }}>Credit Hour</th>
-              <th style={{ width: '20%' }}>Lecture</th>
-              <th style={{ width: '10%' }}>Practical</th>
-              <th style={{ width: '10%' }}>Alias</th>
+              <th style={{ width: '20%' }}>No. of lectures</th>
+              <th style={{ width: '10%' }}>No. of practicals</th>
+              <th style={{ width: '10%' }}>Subject alias</th>
               <th style={{ width: '20%' }}></th>
             </tr>
           </thead>
@@ -84,7 +84,7 @@ export default function SubjectList() {
             )}
             {subject && !subject.length && (
               <tr>
-                <td colSpan="4" className="text-center">
+                <td colSpan="16" className="text-center">
                   <div className="p-2">No subject To Display</div>
                 </td>
               </tr>

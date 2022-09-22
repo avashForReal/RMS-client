@@ -18,7 +18,7 @@ export default function RoomCreate() {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    room_number: Yup.number().required('Room number is required')
+    roomNumber: Yup.number().typeError('Room number must be a number').required('Room number is required')
   });
 
   // functions to build form returned by useForm() hook
@@ -38,14 +38,15 @@ export default function RoomCreate() {
   }
 
   function createRoom(data) {
+    console.log(data);
     return roomsService
       .create(data)
       .then(() => {
         reset()
         showSuccessMessage("Room added successfully");
       })
-      .catch(() => {
-        showErrorMessage("something went wrong. try again")
+      .catch((err) => {
+        showErrorMessage(err || "something went wrong. try again")
       });
   }
 
@@ -58,8 +59,8 @@ export default function RoomCreate() {
         showSuccessMessage("Room updated successfully");
         // alertService.success('User updated', { keepAfterRouteChange: true });
       })
-      .catch(() => {
-        showErrorMessage("something went wrong. try again")
+      .catch((err) => {
+        showErrorMessage(err || "something went wrong. try again")
       });
   }
 
@@ -68,7 +69,7 @@ export default function RoomCreate() {
       // get user and set form fields
       roomsService.getById(id).then((room) => {
         // console.log(room)
-        const fields = ['room_number','available'];
+        const fields = ['roomNumber','available'];
         fields.forEach((field) => setValue(field, room[field]));
       });
     }
@@ -82,16 +83,16 @@ export default function RoomCreate() {
           <div className="form-group col-7">
             <label>Room Number</label>
             <input
-              name="room_number"
+              name="roomNumber"
               type="number"
-              {...register('room_number')}
+              {...register('roomNumber')}
               // className={`form-control`}
-              className={`form-control ${errors.room_number ? 'is-invalid' : ''}`}
+              className={`form-control ${errors.roomNumber ? 'is-invalid' : ''}`}
             />
-            <div className="invalid-feedback">{errors?.room_number?.message}</div>
+            <div className="invalid-feedback">{errors?.roomNumber?.message}</div>
           </div>
-          <div className="form-group col-7">
-            <label>available</label>
+          <div className="form-group" style={{marginLeft: "60px"}}>
+            <label>Is available?</label>
             <input
               name="available"
               type="checkbox"

@@ -19,13 +19,15 @@ export default function TeachersCreate() {
   // form validation rules
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('Teacher name is required'),
-    workload: Yup.number().required('Teacher workload must be number'),
-    type: Yup.string().required('Teacher type is required'),
-    startTime: Yup.string('Must be string'),
-    endTime: Yup.string('Must be string'),
-    initial: Yup.string().required('End period is required'),
+    workload: Yup.number().typeError('Teacher workload must be number').required('Teacher workload is required'),
+    // type: Yup.string().required('Teacher type is required'),
+    startTime: Yup.string().matches(/^([01]\d|2[0-3]):([0-5]\d)$/,'Must be in format of HH:MM').required('Start time is required'),
+    endTime: Yup.string('Must be string').matches(/^([01]\d|2[0-3]):([0-5]\d)$/,'Must be in format of HH:MM').required('End time is required'),
+    initial: Yup.string().required('Teacher initial is required'),
   });
 
+
+  // time: `${START}-${END}`
   // functions to build form returned by useForm() hook
   const {
     register,
@@ -47,11 +49,10 @@ export default function TeachersCreate() {
       .create(data)
       .then(() => {
         reset()
-        showSuccessMessage("Subject added successfully");
+        showSuccessMessage("Teacher added successfully");
       })
       .catch((err) => {
-        console.log(err)
-        showErrorMessage("something went wrong. try again")
+        showErrorMessage(err || "something went wrong. try again")
       });
   }
 
@@ -61,7 +62,7 @@ export default function TeachersCreate() {
       .update(id, data)
       .then(() => {
         reset()
-        showSuccessMessage("Subject updated successfully");
+        showSuccessMessage("Teacher updated successfully");
         // alertService.success('User updated', { keepAfterRouteChange: true });
       })
       .catch(() => {
@@ -74,7 +75,7 @@ export default function TeachersCreate() {
       // get user and set form fields
       teachersService.getById(id).then((dept) => {
         // console.log(dept)
-        const fields = ['name','workload', 'type', 'startTime', 'end'];
+        const fields = ['name','workload', 'startTime', 'endTime', 'initial'];
         fields.forEach((field) => setValue(field, dept[field]));
       });
     }
@@ -86,7 +87,7 @@ export default function TeachersCreate() {
         <h1>{isAddMode ? 'Add Teacher' : 'Edit Teacher'}</h1>
         <div className="form-row">
           <div className="form-group col-7">
-            <label>Teacher</label>
+            <label>Teacher Name</label>
             <input
               name="name"
               type="text"
@@ -107,7 +108,7 @@ export default function TeachersCreate() {
             />
             <div className="invalid-feedback">{errors?.workload?.message}</div>
           </div>
-          <div className="form-group col-7">
+          {/* <div className="form-group col-7">
             <label>Type</label>
             <input
               name="type"
@@ -117,9 +118,9 @@ export default function TeachersCreate() {
               className={`form-control ${errors.type ? 'is-invalid' : ''}`}
             />
             <div className="invalid-feedback">{errors?.workload?.message}</div>
-          </div>
+          </div> */}
           <div className="form-group col-7">
-            <label>startTime</label>
+            <label>Start Time</label>
             <input
               name="startTime"
               type="text"
@@ -130,7 +131,7 @@ export default function TeachersCreate() {
             <div className="invalid-feedback">{errors?.startTime?.message}</div>
           </div>
           <div className="form-group col-7">
-            <label>endTime</label>
+            <label>End Time</label>
             <input
               name="endTime"
               type="text"

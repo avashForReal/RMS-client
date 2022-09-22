@@ -23,7 +23,7 @@ export default function SemesterCreate() {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    semester: Yup.number().required('Semester number is required'),
+    semester: Yup.number().typeError('Semester must be a number').required('Semester number is required'),
     // subjects: Yup.array().required('Semester subjects are required'),
   });
 
@@ -114,8 +114,6 @@ export default function SemesterCreate() {
 
   return (
     <>
-      {/* {JSON.stringify(presubject)} */}
-      {JSON.stringify(selectedsubject)}
       <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
         <h1>{isAddMode ? 'Add Semester' : 'Edit Semester'}</h1>
         <div className="form-row">

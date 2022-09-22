@@ -45,7 +45,6 @@ export default function DeptList() {
             <tr>
               <th style={{ width: '20%' }}>Name</th>
               <th style={{ width: '20%' }}>Semesters</th>
-              {/* <th style={{ width: '20%' }}>Semesters</th> */}
               <th style={{ width: '10%' }}></th>
             </tr>
           </thead>

@@ -51,7 +51,7 @@ export default function SemesterList() {
               semester.map((sem) => (
                 <tr key={sem._id}>
                   <td>{sem.semester}</td>
-                  <td>{sem.subjects.map((sub,i) => <span key={i} >{sub.name}</span>)}</td>
+                  <td>{sem.subjects.map((sub,i) => <span key={i} >{sub.name},  </span>)}</td>
                   <td style={{ whiteSpace: 'nowrap' }}>
                     <Link to={`${path}/${sem._id}/edit`} className="btn btn-sm btn-primary mr-1">
                       Edit
